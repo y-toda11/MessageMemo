@@ -22,7 +22,7 @@ public class MessageMemoController {
 
 	@RequestMapping("/msgmemo/inputForm")
 	public String msg() {
-		return "msg.html";
+		return "msg.html";	// MESSAGE MEMO画面表示
 	}
 	
 	// 顧客名簿
@@ -35,19 +35,11 @@ public class MessageMemoController {
 	}
 
 	public @ResponseBody void addNewCustomer(	  @RequestParam String c_num 
-												, @RequestParam String c_name
-												, @RequestParam String address
-												, @RequestParam String tel) {
+												, @RequestParam String c_name) {
 		
 		Customer customerAddData = new Customer();
-		customerAddData.setAll(c_num,c_name,address,tel);
-		
-//		Timestamp timestamp = new Timestamp(System.currentTimeMillis());	// 現在時刻を取得する
-//		customerAddData.setCreate_date(timestamp);		// 現在時刻
-//		customerAddData.setCreate_user("auto_system");	// 作成者にauto_systemと表示
-//		customerAddData.setUpdate_date(timestamp);
-//		customerAddData.setUpdate_user("auto_system");
-		
+		customerAddData.setAll(c_num,c_name);
+			
 		customerRepository.save(customerAddData);
 	}
 	
@@ -61,18 +53,10 @@ public class MessageMemoController {
 	}
 
 	public @ResponseBody void addNewEmployee(	  @RequestParam String e_num 
-												, @RequestParam String e_name
-												, @RequestParam int e_year
-												, @RequestParam String depart_cd) {
+												, @RequestParam String e_name) {
 		
 		Employee employeeAddData = new Employee();
-		employeeAddData.setAll(e_num,e_name,e_year,depart_cd);
-		
-//		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-//		employeeAddData.setCreate_date(timestamp);
-//		employeeAddData.setCreate_user("auto_system");
-//		employeeAddData.setUpdate_date(timestamp);
-//		employeeAddData.setUpdate_user("auto_system");
+		employeeAddData.setAll(e_num,e_name);
 		
 		employeeRepository.save(employeeAddData);
 	}

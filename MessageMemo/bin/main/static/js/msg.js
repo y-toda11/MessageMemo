@@ -46,42 +46,34 @@ document.getElementById("check1").onclick = function() {
     let check2 = document.getElementById("check2")
     let check3 = document.getElementById("check3")
     if (document.getElementById("check1").checked) {
-        check2.disabled = true;
-        check3.disabled = true;
-    } else {
-        check2.disabled = false;
-        check3.disabled = false;
+        check2.checked = false;
+        check3.checked = false;
     }
+    check();
 }
 
 document.getElementById("check2").onclick = function() {
     let check1 = document.getElementById("check1")
     if (document.getElementById("check2").checked) {
-        check1.disabled = true;
-        check3.disabled = true;
-    } else {
-        check1.disabled = false;
-        check3.disabled = false;
+        check1.checked = false;
+        check3.checked = false;
     }
+    check();
 }
 
 document.getElementById("check3").onclick = function() {
     if (document.getElementById("check3").checked) {
-        check1.disabled = true;
-        check2.disabled = true;
-    } else {
-        check1.disabled = false;
-        check2.disabled = false;
+        check1.checked = false;
+        check2.checked = false;
     }
-    // テキストエリアの制限
+    check();
+}
+//     テキストエリアの制限
+function check() {
     let txta = document.getElementById("txta");
-        if (document.getElementById("check3").checked) {
-            txta.readOnly = false;
-        } else {
-            txta.readOnly = true;
-        }
-
-    document.getElementById("enter").onclick = function() {
-        document.getElementById("msg").hidden = false;
+    if (document.getElementById("check3").checked) {
+    	txta.readOnly = false;
+    } else {
+    	txta.readOnly = true;
     }
 }

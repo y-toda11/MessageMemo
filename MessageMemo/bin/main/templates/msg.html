@@ -14,8 +14,8 @@
             </nav>
 
             <!-- 宛先 -->
-            <div class="col-8 mx-auto">
-                <input class="mt-2 mb-3" type="text" name="to_user" maxlength="40">さん宛て
+            <div class="col-6 mx-auto">
+                <input class="mt-5 mb-3" type="text" name="to_user" maxlength="40">さん宛て
             </div>
             
         
@@ -132,7 +132,7 @@
 					会社名
                 </div>
                 <select class="ml-5" name="company">
-                    <option>　　　　　　　　　　　　　　　　　　　　</option>
+                    <option th:each="customer : ${customerlist}" th:value="*{c_num}" th:object="${customer}" th:text="*{c_name}"></option>
                 </select>
             </div>
 
@@ -150,9 +150,9 @@
 					対応
                 </div>
                 <ul class="col-10 mx-auto list-unstyled mb-0">
-                    <li class="m-2"><input id="check1" type="checkbox" name="check1" value="1">もう一度お電話します</li>
-                    <li class="m-2"><input id="check2" type="checkbox" name="check2" value="2">折り返しお願いします</li>
-                    <li class="m-2"><input id="check3" type="checkbox" name="check3" value="3">伝言あります</li>
+                    <li class="m-2"><input id="check1" class="ch" type="checkbox" name="check1" value="1">もう一度お電話します</li>
+                    <li class="m-2"><input id="check2" class="ch" type="checkbox" name="check2" value="2">折り返しお願いします</li>
+                    <li class="m-2"><input id="check3" class="ch" type="checkbox" name="check3" value="3">伝言あります</li>
                 </ul>
             </div>
                     
@@ -166,7 +166,7 @@
 					受電者
                 </div>
                 <select class="ml-5" name="from_user" maxlength="40">
-                    <option>　　　　　　　　　　</option>
+                    <option th:each="employee : ${employeelist}" th:value="*{e_num}" th:object="${employee}" th:text="*{e_name}"></option>
                 </select>
             </div>
 

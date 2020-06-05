@@ -68,13 +68,9 @@ public class Employee {
 	
 	public void setAll(  String e_num
 						,String e_name
-						,int e_year
-						,String depart_cd
 						) {
 		this.e_num = e_num;
-		this.e_name = e_name;
-		this.e_year = e_year;
-		this.depart_cd = depart_cd;		
+		this.e_name = e_name;	
 	}
 	
 	
