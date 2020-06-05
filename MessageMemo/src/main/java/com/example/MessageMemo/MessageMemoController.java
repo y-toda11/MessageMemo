@@ -21,17 +21,22 @@ public class MessageMemoController {
 	private EmployeeRepository employeeRepository;
 
 	@RequestMapping("/msgmemo/inputForm")
-	public String msg() {
-		return "msg.html";	// MESSAGE MEMO画面表示
-	}
-	
-	// 顧客名簿
-	public void list(Model model) {
+	public String msg(Model model) {
+
 		// M_CUSTOMERテーブルの全データを取得
 		Iterable<Customer> customerList = customerRepository.findAll();
-		
+				
 		// モデルに属性追加
 		model.addAttribute("customerlist",customerList);
+		
+		// M_EMPLOYEEテーブルの全データを取得
+		Iterable<Employee> employeeList = employeeRepository.findAll();
+		
+		// モデルに属性追加
+		model.addAttribute("employeelist",employeeList);
+
+		return "msg.html";	// MESSAGE MEMO画面表示
+	
 	}
 
 	public @ResponseBody void addNewCustomer(	  @RequestParam String c_num 
@@ -42,16 +47,7 @@ public class MessageMemoController {
 			
 		customerRepository.save(customerAddData);
 	}
-	
-	// 従業員名簿
-	public void list_ep(Model model) {
-		// M_EMPLOYEEテーブルの全データを取得
-		Iterable<Employee> employeeList = employeeRepository.findAll();
 		
-		// モデルに属性追加
-		model.addAttribute("employeelist",employeeList);
-	}
-
 	public @ResponseBody void addNewEmployee(	  @RequestParam String e_num 
 												, @RequestParam String e_name) {
 		

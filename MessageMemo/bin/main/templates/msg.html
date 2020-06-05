@@ -26,9 +26,9 @@
                         <div>
 							 受電日時
                         </div>
-                        <input id="today_year" class="w-25 ml-4 mt-2" type="text" name="today_year" maxlength="4">年
-                        <input id="today_month" class="w-25" type="text" name="today_month" maxlength="2">月
-                        <input id="today_day" class="w-25" type="text" name="today_day" maxlength="2">日
+                        <input id="today_year" class="w-25 ml-4 mt-2" type="number" name="today_year" maxlength="4">年
+                        <input id="today_month" class="w-25" type="number" name="today_month" maxlength="2">月
+                        <input id="today_day" class="w-25" type="number" name="today_day" maxlength="2">日
                     </div>
                 </div>
 
@@ -132,7 +132,7 @@
 					会社名
                 </div>
                 <select class="ml-5" name="company">
-                    <option th:each="customer : ${customerlist}" th:value="*{c_num}" th:object="${customer}" th:text="*{c_name}"></option>
+                    <option th:each="customer : ${customerlist}" th:object="${customer}" th:value="*{c_num}" th:text="*{c_name}"></option>
                 </select>
             </div>
 
@@ -141,7 +141,7 @@
                 <div class="">
 					氏名
                 </div>
-                <input class="ml-5 col-sm-10" type="text" name="company_name" maxlength="40">
+                <input class="ml-5 col-sm-5" type="text" name="company_name" maxlength="40">
             </div>
 
             <!-- 対応 -->
@@ -166,7 +166,7 @@
 					受電者
                 </div>
                 <select class="ml-5" name="from_user" maxlength="40">
-                    <option th:each="employee : ${employeelist}" th:value="*{e_num}" th:object="${employee}" th:text="*{e_name}"></option>
+                    <option th:each="employee : ${employeelist}" th:object="${employee}" th:value="*{e_num}" th:text="*{e_name}"></option>
                 </select>
             </div>
 
