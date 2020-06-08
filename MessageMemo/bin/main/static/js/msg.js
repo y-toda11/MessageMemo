@@ -73,7 +73,27 @@ function check() {
     let txta = document.getElementById("txta");
     if (document.getElementById("check3").checked) {
     	txta.readOnly = false;
+    	txta.required = true;
     } else {
     	txta.readOnly = true;
+    	txta.value="";
     }
+}
+
+document.getElementById("enter").onclick = function() {	
+	let alert = document.getElementById("alert");
+	if(check1.checked == false &&
+	   check2.checked == false &&
+	   check3.checked == false) {
+
+	   alert.hidden = false;
+	   return false;
+	}
+	
+//  宛先メッセージ	
+//	let destination = document.getElementById("destination").value;
+//	document.getElementById("txtb").value = destination;
+//	document.getElementById("txtb").hidden = false;
+//	document.getElementById("message").hidden = false;
+	
 }
