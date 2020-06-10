@@ -3,7 +3,7 @@
     <head>
 		<meta charset="utf-8">
 		<title>Message Memo</title>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
 		<link th:href="@{/css/msg.css}" rel="stylesheet">
     </head>
     <body onload="setDate(), setTime();">
@@ -13,7 +13,7 @@
 		    <input id="print" type="button" class="btn btn-lg btn-outline-light col-1" value="印刷">
 		</nav>
 
-		<form method="post" action="">
+		<form method="post" action="/msgmemo/inputForm">
             <!-- 宛先 -->
             <div class="col-6 mx-auto">
             	<input id="txtb" class="mb-0 mt-2" hidden>
@@ -134,7 +134,7 @@
                 <div class="">
 					会社名
                 </div>
-                <select class="ml-5" name="customer_cd">
+                <select class="ml-5" name="customer_cd" style="width:80%;">
                     <option th:each="customer : ${customerlist}" th:object="${customer}" th:value="*{c_num}" th:text="*{c_name}"></option>
                 </select>
             </div>
@@ -168,7 +168,7 @@
                 <div>
 					受電者
                 </div>
-                <select class="ml-5" name="receiver_cd" maxlength="40" required="required">
+                <select class="ml-5" name="receiver_cd" maxlength="40" required="required" style="width:80%;">
                     <option th:each="employee : ${employeelist}" th:object="${employee}" th:value="*{e_num}" th:text="*{e_name}"></option>
                 </select>
             </div>

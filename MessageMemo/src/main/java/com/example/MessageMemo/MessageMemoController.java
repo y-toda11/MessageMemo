@@ -1,27 +1,28 @@
 package com.example.MessageMemo;
 
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+//import java.util.Date;
+//import java.security.Timestamp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 //import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 
 
 @Controller		// コントローラの役割を持たせる
 public class MessageMemoController {
 	@Autowired	
 	private CustomerRepository customerRepository;
-	
 	@Autowired
 	private EmployeeRepository employeeRepository;
-	
 	@Autowired
 	private MessageRepository messageRepository;
 
@@ -40,52 +41,69 @@ public class MessageMemoController {
 		// モデルに属性追加
 		model.addAttribute("employeelist",employeeList);
 
-		return "msg.html";	// MESSAGE MEMO画面表示
-	
-	}
-
-	public @ResponseBody void addNewCustomer(	  @RequestParam String c_num 
-												, @RequestParam String c_name) {
-		
-		Customer customerAddData = new Customer();
-		customerAddData.setAll(c_num,c_name);
-			
-		customerRepository.save(customerAddData);
-	}
-		
-	public @ResponseBody void addNewEmployee(	  @RequestParam String e_num 
-												, @RequestParam String e_name) {
-		
-		Employee employeeAddData = new Employee();
-		employeeAddData.setAll(e_num,e_name);
-		
-		employeeRepository.save(employeeAddData);
+		return "msg.html";	// MESSAGE MEMO画面表示	
 	}
 	
 	// DB登録処理
-//	@PostMapping(path="/")
-	public @ResponseBody String addNewMessage(	  @RequestParam int m_num 
-												, @RequestParam String to_name
+	@PostMapping(path="/msgmemo/inputForm")
+	public @ResponseBody void addNewMessage(	  @RequestParam String to_name
 												, @RequestParam String receiver_cd
-												, @RequestParam Timestamp receiver_time
+												, @RequestParam String receive_time
 												, @RequestParam String customer_cd
 												, @RequestParam String sender
 												, @RequestParam String message_cd
 												, @RequestParam String memo) {
 		
-		Message messageAddData = new Message();
-		messageAddData.setAll(m_num,to_name,receiver_cd,receiver_time,customer_cd,sender,message_cd,memo);
+		// 取得確認
+//		System.out.println(to_name);
+//		System.out.println(receiver_cd);
+//		System.out.println(receive_time);
+//		System.out.println(customer_cd);
+//		System.out.println(sender);
+//		System.out.println(message_cd);
+//		System.out.println(memo);
 		
-		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-		messageAddData.setCreate_date(timestamp);
-		messageAddData.setCreate_user("auto_system");
-		messageAddData.setUpdate_date(timestamp);
-		messageAddData.setUpdate_user("auto_system");
+		// 受電日時のテキストボックス値を配列に格納
+		String[] times = receive_time.split(",",0);
+//		for (int i=0; i<times.length; i++) {
+//		      System.out.println(times[i]);
+//		}
 		
-		messageRepository.save(messageAddData);
+		// PMの場合の処理
+//		String hour = times[4];
+//		int num = Integer.parseInt(hour);
+//		if(times[3] == "PM") {
+//			num += 12;
+//		}
+//		System.out.println("numは" + num);
 		
-		return "/msgmemo/inputForm";
-	}
-	
-	
+		// DB受電日時の形に文字列結合
+		String time = times[0] + "-" + times[1] + "-" + times[2] + " " + times[4] + ":" + times[5];
+		System.out.println("timeの値は" + time);		// timeの値確認
+		
+		// timeをTimestamp型に変換
+		try {
+			Timestamp timestamp = new Timestamp(new SimpleDateFormat("yyyy-MM-dd hh:mm").parse(time).getTime());
+			System.out.println("timestampは" + timestamp);	// timestampの値を確認
+		
+	        // DBのテーブルに登録
+			Message messageAddData = new Message();
+			
+			// 自動採番（初期値1,以降最大ID+1）
+			messageAddData.setM_id(1);
+						
+			messageAddData.setAll(to_name,receiver_cd,timestamp,customer_cd,sender,message_cd,memo);
+			
+			Timestamp tStamp = new Timestamp(System.currentTimeMillis());
+			messageAddData.setCreate_date(tStamp);
+			messageAddData.setCreate_user("springuser");
+			messageAddData.setUpdate_date(tStamp);
+			messageAddData.setUpdate_user("springuser");
+					
+			messageRepository.save(messageAddData);
+		
+		} catch(ParseException e) {		// エラーで登録できない場合
+			e.printStackTrace();
+		}
+	}	
 }

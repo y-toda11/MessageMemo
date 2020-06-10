@@ -15,8 +15,8 @@ public class Message {
 	@Id	// 主キーの指定
 	
 	// カラム名
-	@Column(name="M_ID" ,columnDefinition = "int(11)")	// メッセージID
-	private int m_num;
+	@Column(name="M_ID" ,columnDefinition = "int(11)")	// 宛先者氏名
+	private int m_id;
 	
 	@Column(name="TO_NAME" ,columnDefinition = "VARCHAR(40)")	// 宛先者氏名
 	private String to_name;
@@ -52,11 +52,11 @@ public class Message {
 	private String create_user;
 	
 	// セッタとゲッタ
-	public int getM_num() {
-		return m_num;
+	public int getM_id() {
+		return m_id;
 	}
-	public void setE_num(int m_num) {
-		this.m_num = m_num;
+	public void setM_id(int m_id) {
+		this.m_id = m_id;
 	}
 	public String getTo_name() {
 		return to_name;
@@ -70,11 +70,11 @@ public class Message {
 	public void setE_year(String receiver_cd) {
 		this.receiver_cd = receiver_cd;
 	}
-	public Timestamp getReceiv_time() {
+	public Timestamp getReceive_time() {
 		return receive_time;
 	}
-	public void setReceiv_time(Timestamp receiv_time) {
-		this.receive_time = receiv_time;
+	public void setReceive_time(Timestamp timestamp) {
+		this.receive_time = timestamp;
 	}
 	public String getCustomer_cd() {
 		return customer_cd;
@@ -102,25 +102,23 @@ public class Message {
 	}
 
 	
-	public void setAll(  int m_num
-						,String to_name
+	public void setAll(  String to_name
 						,String receiver_cd
-						,Timestamp receiv_time
+						,Timestamp timestamp
 						,String customer_cd
 						,String sender
 						,String message_cd
 						,String memo
 						) {
-		this.m_num = m_num;
 		this.to_name = to_name;
 		this.receiver_cd = receiver_cd;
-		this.receive_time = receiv_time;
+		this.receive_time = timestamp;
 		this.customer_cd = customer_cd;
 		this.sender = sender;
 		this.message_cd = message_cd;
 		this.memo = memo;
 	}
-	
+
 	
 	public Timestamp getCreate_date() {
 		return create_date;
