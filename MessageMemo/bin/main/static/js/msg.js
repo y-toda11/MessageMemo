@@ -68,7 +68,7 @@ document.getElementById("check3").onclick = function() {
     }
     check();
 }
-//     テキストエリアの制限
+// テキストエリアの制限
 function check() {
     let txta = document.getElementById("txta");
     if (document.getElementById("check3").checked) {
@@ -80,29 +80,12 @@ function check() {
     }
 }
 
+// 対応未選択時のメッセージ
 document.getElementById("enter").onclick = function() {
 	if(check1.checked == false &&
 	   check2.checked == false &&
 	   check3.checked == false) {
 
 	   document.getElementById("paragraph").innerHTML = "対応を選択してください";
-	   return false;
-}
-
-//  宛先メッセージ			
-//document.getElementById("form").onsubmit = function() {
-//		document.location.reload();
-//		let destination = document.getElementById("destination").value;
-//		document.getElementById("txtb").value = destination;
-//		document.getElementById("txtb").hidden = false;
-//		document.getElementById("message").hidden = false;
-//}
-
-//function message() {
-//	let destination = document.getElementById("destination").value;
-//	document.getElementById("txtb").value = destination;
-//	document.getElementById("txtb").hidden = false;
-//	document.getElementById("message").hidden = false;
-//}
-	
+	}
 }

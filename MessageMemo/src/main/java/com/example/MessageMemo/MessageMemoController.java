@@ -58,9 +58,9 @@ public class MessageMemoController {
 		
 		// 受電日時のテキストボックス値を配列に格納
 		String[] times = receive_time.split(",",0);
-//		for (int i=0; i<times.length; i++) {
-//		      System.out.println(times[i]);
-//		}
+		for (int i=0; i<times.length; i++) {
+		      System.out.println(times[i]);
+		}
 		
 		// PMの場合の処理
 		String hour = times[4];
@@ -73,12 +73,12 @@ public class MessageMemoController {
 		
 		// DB受電日時の形に文字列結合
 		String time = times[0] + "-" + times[1] + "-" + times[2] + " " + num + ":" + times[5];
-//		System.out.println("timeの値は" + time);		// timeの値確認
+		System.out.println("timeの値は" + time);		// timeの値確認
 		
 		// timeをTimestamp型に変換
 		try {
 			Timestamp timestamp = new Timestamp(new SimpleDateFormat("yyyy-MM-dd hh:mm").parse(time).getTime());
-//			System.out.println("timestampは" + timestamp);	// timestampの値を確認
+			System.out.println("timestampは" + timestamp);	// timestampの値を確認
 		
 	        // DBのテーブルに登録
 			Message messageAddData = new Message();
@@ -87,17 +87,18 @@ public class MessageMemoController {
 			int cnt = rep.countT_message();
 			
 			int m_id;
-			if(cnt == 0) {
+			if(cnt == 0) {	// 最初のデータには1
 				m_id = 1;
 			} else {
-				m_id = cnt + 1;
+				m_id = cnt + 1;		// 以降最大ID+1
 			}
-			messageAddData.setM_id(cnt);
+			
+			messageAddData.setM_id(cnt);	//
 			
 			messageAddData.setAll(m_id,to_name,receiver_cd,timestamp,customer_cd,sender,message_cd,memo);
 			
-			Timestamp tStamp = new Timestamp(System.currentTimeMillis());
-			messageAddData.setCreate_date(tStamp);
+			Timestamp tStamp = new Timestamp(System.currentTimeMillis());	// 現在時刻(ミリ秒)を変数に代入
+			messageAddData.setCreate_date(tStamp);		// 作成者・更新日時など
 			messageAddData.setCreate_user("springuser");
 			messageAddData.setUpdate_date(tStamp);
 			messageAddData.setUpdate_user("springuser");
@@ -105,14 +106,13 @@ public class MessageMemoController {
 			messageRepository.save(messageAddData);
 		
 			
-			
 		} catch(ParseException e) {		// エラーで登録できない場合
 			e.printStackTrace();
 		}
 		
-		model.addAttribute("enterMessage", to_name + "さん宛てのメッセージを登録しました");
+		model.addAttribute("enterMessage", to_name + "さん宛てのメッセージを登録しました");	// 登録メッセージ
 		
-		Iterable<Customer> customerList = customerRepository.findAll();
+		Iterable<Customer> customerList = customerRepository.findAll();		// 画面を再表示する前にデータ取得
 		model.addAttribute("customerlist",customerList);
 		Iterable<Employee> employeeList = employeeRepository.findAll();
 		model.addAttribute("employeelist",employeeList);
