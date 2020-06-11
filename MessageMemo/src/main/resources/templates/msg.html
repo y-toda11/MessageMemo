@@ -13,12 +13,10 @@
 		    <input id="print" type="button" class="btn btn-lg btn-outline-light col-1" value="印刷">
 		</nav>
 
-		<form method="post" action="/msgmemo/inputForm">
+		<form id="form" method="post" action="/msgmemo/inputForm">
             <!-- 宛先 -->
             <div class="col-6 mx-auto">
-            	<input id="txtb" class="mb-0 mt-2" hidden>
-            	<span id="message" class="mb-0 mt-2" hidden>さん宛てのメッセージを登録しました</span><br>
-            	<p id="alert" class="mb-0 text-center" hidden>※対応を選択してください※</p>
+            	<p id=paragraph th:text="${enterMessage}" class="text-center"></p>
                 <input id="destination" class="mt-2 mb-3" type="text" name="to_name" maxlength="40" required="required">さん宛て
             </div>
             
@@ -178,7 +176,7 @@
                 <input id="enter" type="submit" class="btn btn-outline-danger btn-block mt-5 mb-5" value="登録">
             </div>
 		</form>
-
+		
  		<script type="text/javascript" th:src="@{/js/msg.js}"></script>
     </body>
 </html>

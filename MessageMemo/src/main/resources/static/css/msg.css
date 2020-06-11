@@ -8,9 +8,13 @@ input {
 	background-color: white;
 	border-width: 0px;
 	border-style: none;
-	width: 100px;
+	width: 80px;
 }
 
 #alert {
 	color: red;
+}
+
+#paragraph {
+	font-size: 20px;
 }

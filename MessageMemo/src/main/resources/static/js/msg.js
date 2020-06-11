@@ -80,20 +80,29 @@ function check() {
     }
 }
 
-document.getElementById("enter").onclick = function() {	
-	let alert = document.getElementById("alert");
+document.getElementById("enter").onclick = function() {
 	if(check1.checked == false &&
 	   check2.checked == false &&
 	   check3.checked == false) {
 
-	   alert.hidden = false;
+	   document.getElementById("paragraph").innerHTML = "対応を選択してください";
 	   return false;
-	}
-	
-//  宛先メッセージ	
+}
+
+//  宛先メッセージ			
+//document.getElementById("form").onsubmit = function() {
+//		document.location.reload();
+//		let destination = document.getElementById("destination").value;
+//		document.getElementById("txtb").value = destination;
+//		document.getElementById("txtb").hidden = false;
+//		document.getElementById("message").hidden = false;
+//}
+
+//function message() {
 //	let destination = document.getElementById("destination").value;
 //	document.getElementById("txtb").value = destination;
 //	document.getElementById("txtb").hidden = false;
 //	document.getElementById("message").hidden = false;
+//}
 	
 }

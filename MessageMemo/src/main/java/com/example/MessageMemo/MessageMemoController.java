@@ -3,18 +3,15 @@ package com.example.MessageMemo;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-//import java.util.Date;
-//import java.security.Timestamp;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-//import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+//import org.springframework.web.bind.annotation.ResponseBody;
+//import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller		// コントローラの役割を持たせる
@@ -48,22 +45,16 @@ public class MessageMemoController {
 	
 	// DB登録処理
 	@PostMapping(path="/msgmemo/inputForm")
-	public @ResponseBody void addNewMessage(	  @RequestParam String to_name
-												, @RequestParam String receiver_cd
-												, @RequestParam String receive_time
-												, @RequestParam String customer_cd
-												, @RequestParam String sender
-												, @RequestParam String message_cd
-												, @RequestParam String memo) {
-		
-		// 取得確認
-//		System.out.println(to_name);
-//		System.out.println(receiver_cd);
-//		System.out.println(receive_time);
-//		System.out.println(customer_cd);
-//		System.out.println(sender);
-//		System.out.println(message_cd);
-//		System.out.println(memo);
+	
+	public String addNewMessage(	  @RequestParam String to_name
+									, @RequestParam String receiver_cd
+									, @RequestParam String receive_time
+									, @RequestParam String customer_cd
+									, @RequestParam String sender
+									, @RequestParam String message_cd
+									, @RequestParam String memo
+									, Model model) {
+
 		
 		// 受電日時のテキストボックス値を配列に格納
 		String[] times = receive_time.split(",",0);
@@ -77,7 +68,7 @@ public class MessageMemoController {
 		if(times[3].equals("PM")) {
 			num += 12;
 		}
-		System.out.println("numは" + num);	// numの値を確認
+//		System.out.println("numは" + num);	// numの値を確認
 		
 		
 		// DB受電日時の形に文字列結合
@@ -101,7 +92,7 @@ public class MessageMemoController {
 			} else {
 				m_id = cnt + 1;
 			}
-			messageAddData.setM_id(cnt);			
+			messageAddData.setM_id(cnt);
 			
 			messageAddData.setAll(m_id,to_name,receiver_cd,timestamp,customer_cd,sender,message_cd,memo);
 			
@@ -113,8 +104,19 @@ public class MessageMemoController {
 					
 			messageRepository.save(messageAddData);
 		
+			
+			
 		} catch(ParseException e) {		// エラーで登録できない場合
 			e.printStackTrace();
 		}
-	}	
+		
+		model.addAttribute("enterMessage", to_name + "さん宛てのメッセージを登録しました");
+		
+		Iterable<Customer> customerList = customerRepository.findAll();
+		model.addAttribute("customerlist",customerList);
+		Iterable<Employee> employeeList = employeeRepository.findAll();
+		model.addAttribute("employeelist",employeeList);
+		
+		return "msg.html";
+	}
 }
