@@ -102,7 +102,8 @@ public class Message {
 	}
 
 	
-	public void setAll(  String to_name
+	public void setAll(  int m_id 
+						,String to_name
 						,String receiver_cd
 						,Timestamp timestamp
 						,String customer_cd
@@ -110,6 +111,7 @@ public class Message {
 						,String message_cd
 						,String memo
 						) {
+		this.m_id = m_id;
 		this.to_name = to_name;
 		this.receiver_cd = receiver_cd;
 		this.receive_time = timestamp;

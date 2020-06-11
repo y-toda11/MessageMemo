@@ -10,3 +10,7 @@ input {
 	border-style: none;
 	width: 100px;
 }
+
+#alert {
+	color: red;
+}

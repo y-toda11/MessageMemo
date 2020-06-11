@@ -25,6 +25,8 @@ public class MessageMemoController {
 	private EmployeeRepository employeeRepository;
 	@Autowired
 	private MessageRepository messageRepository;
+	@Autowired
+	private MessageRepository rep;
 
 	@RequestMapping("/msgmemo/inputForm")
 	public String msg(Model model) {
@@ -70,29 +72,38 @@ public class MessageMemoController {
 //		}
 		
 		// PMの場合の処理
-//		String hour = times[4];
-//		int num = Integer.parseInt(hour);
-//		if(times[3] == "PM") {
-//			num += 12;
-//		}
-//		System.out.println("numは" + num);
+		String hour = times[4];
+		int num = Integer.parseInt(hour);
+		if(times[3].equals("PM")) {
+			num += 12;
+		}
+		System.out.println("numは" + num);	// numの値を確認
+		
 		
 		// DB受電日時の形に文字列結合
-		String time = times[0] + "-" + times[1] + "-" + times[2] + " " + times[4] + ":" + times[5];
-		System.out.println("timeの値は" + time);		// timeの値確認
+		String time = times[0] + "-" + times[1] + "-" + times[2] + " " + num + ":" + times[5];
+//		System.out.println("timeの値は" + time);		// timeの値確認
 		
 		// timeをTimestamp型に変換
 		try {
 			Timestamp timestamp = new Timestamp(new SimpleDateFormat("yyyy-MM-dd hh:mm").parse(time).getTime());
-			System.out.println("timestampは" + timestamp);	// timestampの値を確認
+//			System.out.println("timestampは" + timestamp);	// timestampの値を確認
 		
 	        // DBのテーブルに登録
 			Message messageAddData = new Message();
 			
 			// 自動採番（初期値1,以降最大ID+1）
-			messageAddData.setM_id(1);
-						
-			messageAddData.setAll(to_name,receiver_cd,timestamp,customer_cd,sender,message_cd,memo);
+			int cnt = rep.countT_message();
+			
+			int m_id;
+			if(cnt == 0) {
+				m_id = 1;
+			} else {
+				m_id = cnt + 1;
+			}
+			messageAddData.setM_id(cnt);			
+			
+			messageAddData.setAll(m_id,to_name,receiver_cd,timestamp,customer_cd,sender,message_cd,memo);
 			
 			Timestamp tStamp = new Timestamp(System.currentTimeMillis());
 			messageAddData.setCreate_date(tStamp);
