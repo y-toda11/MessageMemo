@@ -6,12 +6,14 @@ import java.text.SimpleDateFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-//import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 //import org.springframework.web.bind.annotation.ResponseBody;
 //import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+
 
 
 @Controller		// コントローラの役割を持たせる
@@ -58,9 +60,9 @@ public class MessageMemoController {
 		
 		// 受電日時のテキストボックス値を配列に格納
 		String[] times = receive_time.split(",",0);
-		for (int i=0; i<times.length; i++) {
-		      System.out.println(times[i]);
-		}
+//		for (int i=0; i<times.length; i++) {
+//		      System.out.println(times[i]);
+//		}
 		
 		// PMの場合の処理
 		String hour = times[4];
@@ -73,12 +75,12 @@ public class MessageMemoController {
 		
 		// DB受電日時の形に文字列結合
 		String time = times[0] + "-" + times[1] + "-" + times[2] + " " + num + ":" + times[5];
-		System.out.println("timeの値は" + time);		// timeの値確認
+//		System.out.println("timeの値は" + time);		// timeの値確認
 		
 		// timeをTimestamp型に変換
 		try {
 			Timestamp timestamp = new Timestamp(new SimpleDateFormat("yyyy-MM-dd hh:mm").parse(time).getTime());
-			System.out.println("timestampは" + timestamp);	// timestampの値を確認
+//			System.out.println("timestampは" + timestamp);	// timestampの値を確認
 		
 	        // DBのテーブルに登録
 			Message messageAddData = new Message();
@@ -119,4 +121,27 @@ public class MessageMemoController {
 		
 		return "msg.html";
 	}
+	
+	
+	@GetMapping(path="/msgmemo/history")
+	public String list(Model model) {
+		// T_MESSAGEテーブルの全データを取得
+		Iterable<Message> messageList = messageRepository.findAll();
+		
+		// モデルに属性追加
+		model.addAttribute("messagelist",messageList);
+
+		// データ一覧画面を表示
+		return "history.html";
+	}
+	
+//	@RequestMapping("/msgmemo/history")
+//    public String insert() {
+//		// データ登録画面を表示
+//        return "history.html";
+//    }
+	
+	
 }
+
+
