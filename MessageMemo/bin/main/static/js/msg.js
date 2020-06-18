@@ -87,5 +87,8 @@ document.getElementById("enter").onclick = function() {
 	   check3.checked == false) {
 
 	   document.getElementById("paragraph").innerHTML = "対応を選択してください";
+	   return false;
+	} else {
+		document.getElementById("paragraph").innerHTML = "";
 	}
 }

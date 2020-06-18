@@ -93,7 +93,7 @@ public class MessageMemoController {
 				m_id = cnt + 1;		// 以降最大ID+1
 			}
 			
-			messageAddData.setM_id(cnt);	//
+//			messageAddData.setM_id(cnt);	
 			
 			messageAddData.setAll(m_id,to_name,receiver_cd,timestamp,customer_cd,sender,message_cd,memo);
 			

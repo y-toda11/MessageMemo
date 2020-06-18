@@ -8,8 +8,8 @@
     </head>
     <body onload="setDate(), setTime();">
 
-		<nav class="navbar bg-danger text-white">
-		    <h1 class="ml-2">MESSAGE MEMO</h1>
+		<nav class="navbar bg-danger">
+		    <h1 class="ml-2"><a href="http://localhost:8080/msgmemo/inputForm">MESSAGE MEMO</a></h1>
 		    <input id="print" type="button" class="btn btn-lg btn-outline-light col-1" value="印刷">
 		</nav>
 
@@ -96,7 +96,7 @@
                             <option value="32">32</option>
                             <option value="33">33</option>
                             <option value="34">34</option>
-                            <option value="35">19</option>
+                            <option value="35">35</option>
                             <option value="36">36</option>
                             <option value="37">37</option>
                             <option value="38">38</option>
@@ -133,6 +133,7 @@
 					会社名
                 </div>
                 <select class="ml-5" name="customer_cd" style="width:80%;">
+                	<option></option>
                     <option th:each="customer : ${customerlist}" th:object="${customer}" th:value="*{c_num}" th:text="*{c_name}"></option>
                 </select>
             </div>
@@ -166,7 +167,8 @@
                 <div>
 					受電者
                 </div>
-                <select class="ml-5" name="receiver_cd" maxlength="40" required="required" style="width:80%;">
+                <select class="ml-5" name="receiver_cd" required="required" style="width:80%;">
+                	<option></option>
                     <option th:each="employee : ${employeelist}" th:object="${employee}" th:value="*{e_num}" th:text="*{e_name}"></option>
                 </select>
             </div>
