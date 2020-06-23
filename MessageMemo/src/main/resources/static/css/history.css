@@ -3,5 +3,11 @@ thead {
 }
 #table {
     overflow-y: scroll;
-    height: 530px;
+    height: 495px;
+}
+span {
+	color: #d7003a;
+}
+h1 {
+	font-family: cursive;
 }

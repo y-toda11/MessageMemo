@@ -13,7 +13,6 @@ import javax.persistence.Table;
 public class Message {
 	
 	@Id	// 主キーの指定
-	
 	// カラム名
 	@Column(name="M_ID" ,columnDefinition = "int(11)")	// 宛先者氏名
 	private int m_id;

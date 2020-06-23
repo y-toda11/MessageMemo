@@ -28,9 +28,9 @@
                         <div>
 							 受電日時
                         </div>
-                        <input id="today_year" class="w-25 ml-4 mt-2" type="text" name="receive_time" maxlength="4" required="required" oninput="value = value.replace(/[^0-9]+/i,'');">年
-                        <input id="today_month" class="w-25" type="text" name="receive_time" maxlength="2" required="required" oninput="value = value.replace(/[^0-9]+/i,'');">月
-                        <input id="today_day" class="w-25" type="text" name="receive_time" maxlength="2" required="required" oninput="value = value.replace(/[^0-9]+/i,'');">日
+                        <input id="today_year" class="w-25 ml-4 mt-2" type="text" name="receive_time" maxlength="4" required="required" pattern="\d{4}">年
+                        <input id="today_month" class="w-25" type="text" name="receive_time" maxlength="2" required="required" pattern="\d{1,2}">月
+                        <input id="today_day" class="w-25" type="text" name="receive_time" maxlength="2" required="required" pattern="\d{1,2}">日
                     </div>
                 </div>
 

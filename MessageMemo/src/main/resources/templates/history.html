@@ -13,11 +13,11 @@
 		    <input id="print" type="button" class="btn btn-lg btn-outline-light col-1" value="印刷">
 		</nav>
 		
-		<h1 class="text-center mt-3">伝言履歴</h1>		
+		<h1 id="title" class="text-center mt-5"><span>M</span>essage<span>H</span>istory</h1>		
 		
 		<div class="col-9 mx-auto">
 			<input type="button" class="col-1 btn btn-outline-danger btn-block mb-4" value="CSV">
-			<div id="table">
+			<div id="table" class="mb-5">
 			<table class="table table-responsive table-striped table-bordered table-hover table-sm mx-auto">
 				<thead>
 					<tr>
@@ -29,163 +29,20 @@
 						<th>受電者</th>
 					</tr>
 				</thead>
-				<tbody class="overflow-auto">
-					<!-- <tr th:each="message : ${messagelist}" th:object="${message}">
+				<tbody>
+					<tr th:each="history : ${historylist}" th:object="${history}">
 						<td id="" th:text="*{m_id}"></td>	
-						<td id="" th:text="*{receiv_time}"></td>		
+						<td id="" th:text="*{receive_time}"></td>		
 						<td id="" th:text="*{to_name}"></td>
 						<td id="" th:text="*{c_name}"></td>
 						<td id="" th:text="*{sender}"></td>
 						<td id="" th:text="*{message_cd}"></td>
-						<td id="" th:text="*{receiver_cd}"></td>
-					</tr> -->
-					<tr>
-						<td>1</td>
-						<td>2020/04/01 11:51</td>
-						<td>山賀</td>
-						<td>サイバーエージェント</td>
-						<td>田中</td>
-						<td>もう一度お電話します</td>
-						<td>黒木大吾</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>2020/04/01 11:51</td>
-						<td>山賀</td>
-						<td>サイバーエージェント</td>
-						<td>田中</td>
-						<td>もう一度お電話します</td>
-						<td>黒木大吾</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>2020/04/01 11:51</td>
-						<td>山賀</td>
-						<td>サイバーエージェント</td>
-						<td>田中</td>
-						<td>もう一度お電話します</td>
-						<td>黒木大吾</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>2020/04/01 11:51</td>
-						<td>山賀</td>
-						<td>サイバーエージェント</td>
-						<td>田中</td>
-						<td>もう一度お電話します</td>
-						<td>黒木大吾</td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td>2020/04/01 11:51</td>
-						<td>山賀</td>
-						<td>サイバーエージェント</td>
-						<td>田中</td>
-						<td>もう一度お電話します</td>
-						<td>黒木大吾</td>
-					</tr>
-					<tr>
-						<td>6</td>
-						<td>2020/04/01 11:51</td>
-						<td>山賀</td>
-						<td>サイバーエージェント</td>
-						<td>田中</td>
-						<td>もう一度お電話します</td>
-						<td>黒木大吾</td>
-					</tr>
-					<tr>
-						<td>7</td>
-						<td>2020/04/01 11:51</td>
-						<td>山賀</td>
-						<td>サイバーエージェント</td>
-						<td>田中</td>
-						<td>もう一度お電話します</td>
-						<td>黒木大吾</td>
-					</tr>
-					<tr>
-						<td>8</td>
-						<td>2020/04/01 11:51</td>
-						<td>山賀</td>
-						<td>サイバーエージェント</td>
-						<td>田中</td>
-						<td>もう一度お電話します</td>
-						<td>黒木大吾</td>
-					</tr>
-					<tr>
-						<td>9</td>
-						<td>2020/04/01 11:51</td>
-						<td>山賀</td>
-						<td>サイバーエージェント</td>
-						<td>田中</td>
-						<td>もう一度お電話します</td>
-						<td>黒木大吾</td>
-					</tr>
-					<tr>
-						<td>10</td>
-						<td>2020/04/01 11:51</td>
-						<td>山賀</td>
-						<td>サイバーエージェント</td>
-						<td>田中</td>
-						<td>もう一度お電話します</td>
-						<td>黒木大吾</td>
-					</tr>
-					<tr>
-						<td>11</td>
-						<td>2020/04/01 11:51</td>
-						<td>山賀</td>
-						<td>サイバーエージェント</td>
-						<td>田中</td>
-						<td>もう一度お電話します</td>
-						<td>黒木大吾</td>
-					</tr>
-					<tr>
-						<td>12</td>
-						<td>2020/04/01 11:51</td>
-						<td>山賀</td>
-						<td>サイバーエージェント</td>
-						<td>田中</td>
-						<td>もう一度お電話します</td>
-						<td>黒木大吾</td>
-					</tr>
-					<tr>
-						<td>13</td>
-						<td>2020/04/01 11:51</td>
-						<td>山賀</td>
-						<td>サイバーエージェント</td>
-						<td>田中</td>
-						<td>もう一度お電話します</td>
-						<td>黒木大吾</td>
-					</tr>
-					<tr>
-						<td>14</td>
-						<td>2020/04/01 11:51</td>
-						<td>山賀</td>
-						<td>サイバーエージェント</td>
-						<td>田中</td>
-						<td>もう一度お電話します</td>
-						<td>黒木大吾</td>
-					</tr>
-					<tr>
-						<td>15</td>
-						<td>2020/04/01 11:51</td>
-						<td>山賀</td>
-						<td>サイバーエージェント</td>
-						<td>田中</td>
-						<td>もう一度お電話します</td>
-						<td>黒木大吾</td>
-					</tr>
-					<tr>
-						<td>16</td>
-						<td>2020/04/01 11:51</td>
-						<td>山賀</td>
-						<td>サイバーエージェント</td>
-						<td>田中</td>
-						<td>もう一度お電話します</td>
-						<td>黒木大吾</td>
+						<td id="" th:text="*{e_name}"></td>
 					</tr>
 				</tbody>
 			</table>
 			</div>
 		</div>
+		<script type="text/javascript" th:src="@{/js/msg.js}"></script>
 	</body>
 </html>
