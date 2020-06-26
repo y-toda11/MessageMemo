@@ -3,6 +3,8 @@ package com.example.MessageMemo;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.sql.Timestamp;
+//import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 @Entity	// データベースから値を取得
 public class History {
@@ -29,10 +31,12 @@ public class History {
 	public void setM_id(int m_id) {
 		this.m_id = m_id;
 	}
-	public Timestamp getReceive_time() {
-		return receive_time;
+	public String getReceive_time() {	// Timestamp型をString型に変換
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        String str = sdf.format(receive_time);        
+        return str;
 	}
-	public void retReceive_time(Timestamp receive_time) {
+	public void setReceive_time(Timestamp receive_time) {
 		this.receive_time = receive_time;
 	}
 	public String getTo_name() {
@@ -53,7 +57,14 @@ public class History {
 	public void setSender(String sender) {
 		this.sender = sender;
 	}
-	public String getMessage_cd() {
+	public String getMessage_cd() {		// メッセージコードごとに伝言内容
+		if(this.message_cd.equals("1")) {
+			return "もう一度お電話します";
+		} else if(this.message_cd.equals("2")) {
+			return "折り返しお願いします";
+		} else if(this.message_cd.equals("3")) {
+			return "伝言あります";
+		}
 		return message_cd;
 	}
 	public void setMessage_cd(String message_cd) {
@@ -65,21 +76,7 @@ public class History {
 	public void setE_name(String e_name) {
 		this.e_name = e_name;
 	}
-	
-//	public void setAll(  int m_id
-//						,Timestamp receive_time
-//						,String c_name
-//						,String sender
-//						,String message_cd
-//						,String e_name
-//						) {
-//		this.m_id = m_id;
-//		this.receive_time = receive_time;
-//		this.c_name = c_name;
-//		this.sender = sender;
-//		this.message_cd = message_cd;
-//		this.e_name = e_name;
-//	}
+
 
 }
 

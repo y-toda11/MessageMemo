@@ -1,13 +1,76 @@
-thead {
-    background-color: rgb(202, 202, 202);
-}
-#table {
-    overflow-y: scroll;
-    height: 495px;
-}
-span {
-	color: #d7003a;
-}
 h1 {
 	font-family: cursive;
+}
+
+th {
+	background-color: silver;
+}
+
+.table {
+	border: none;
+}
+
+tbody {
+	overflow-y: auto;
+	height: 480px;
+}
+
+thead, th {
+	position: sticky;
+	position: -webkit-sticky;
+	top: 0px;
+	border-bottom: none;
+}
+
+table, thead, tbody {
+	display: block;
+}
+
+.thid {
+	width: 50px;
+}
+.tdid {
+	width: 50px;
+}
+
+.thtime {
+	width: 150px;
+}
+.tdtime {
+	width: 150px;
+}
+
+.thto {
+	width: 110px;
+}
+.tdto {
+	width: 110px;
+}
+
+.from {
+	width: 321px;
+}
+
+.cName {
+	width: 220px;
+}
+
+.sender {
+	width: 101px;
+}
+
+.thmsg {
+	width: 200px;
+}
+
+.tdmsg {
+	width: 200px;
+}
+
+.thname {
+	width: 132px;
+}
+
+.tdname {
+	width: 132px;	
 }

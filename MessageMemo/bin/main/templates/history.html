@@ -13,36 +13,39 @@
 		    <input id="print" type="button" class="btn btn-lg btn-outline-light col-1" value="印刷">
 		</nav>
 		
-		<h1 id="title" class="text-center mt-5"><span>M</span>essage<span>H</span>istory</h1>		
+		<h1 class="text-center mt-5">伝言履歴</h1>		
 		
 		<div class="col-9 mx-auto">
 			<input type="button" class="col-1 btn btn-outline-danger btn-block mb-4" value="CSV">
+			
 			<div id="table" class="mb-5">
-			<table class="table table-responsive table-striped table-bordered table-hover table-sm mx-auto">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>受電日時</th>
-						<th>To</th>
-						<th colspan="2">From</th>
-						<th>伝言</th>
-						<th>受電者</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="history : ${historylist}" th:object="${history}">
-						<td id="" th:text="*{m_id}"></td>	
-						<td id="" th:text="*{receive_time}"></td>		
-						<td id="" th:text="*{to_name}"></td>
-						<td id="" th:text="*{c_name}"></td>
-						<td id="" th:text="*{sender}"></td>
-						<td id="" th:text="*{message_cd}"></td>
-						<td id="" th:text="*{e_name}"></td>
-					</tr>
-				</tbody>
-			</table>
+				<table class="table mb-5 table-responsive table-striped table-bordered table-hover table-sm">
+					 <thead>
+						<tr>
+							<th class="thid text-center">ID</th>
+							<th class="thtime text-center">受電日時</th>
+							<th class="thto text-center">To</th>
+							<th class="from text-center" colspan="2">From</th>
+							<th class="thmsg text-center">伝言</th>
+							<th class="thname text-center">受電者</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						<tr th:each="history : ${historylist}" th:object="${history}">
+							<td class="tdid text-center" th:text="*{m_id}"></td>	
+							<td class="tdtime text-center" th:text="*{receive_time}"></td>		
+							<td class="tdto" th:text="*{to_name}"></td>
+							<td class="cName" th:text="*{c_name}"></td>
+							<td class="sender" th:text="*{sender}"></td>
+							<td class="tdmsg" th:text="*{message_cd}"></td>
+							<td class="tdname" th:text="*{e_name}"></td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 		<script type="text/javascript" th:src="@{/js/msg.js}"></script>
+		<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
 	</body>
 </html>
