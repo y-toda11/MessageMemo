@@ -76,7 +76,7 @@ function check() {
     	txta.required = true;
     } else {
     	txta.readOnly = true;
-    	txta.value="";
+    	txta.value = "";
     }
 }
 

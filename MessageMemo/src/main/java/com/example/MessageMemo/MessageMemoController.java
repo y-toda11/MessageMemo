@@ -29,6 +29,8 @@ public class MessageMemoController {
 	@Autowired
 	private HistoryRepository historyRepository;
 	@Autowired
+	private CsvRepository csvRepository;
+	@Autowired
 	private MessageRepository rep;
 	
 	@RequestMapping("/msgmemo/inputForm")
@@ -127,11 +129,21 @@ public class MessageMemoController {
 		
 		// モデルに属性追加
 		model.addAttribute("historylist",historyList);
-		
-		
-	
+			
 		// データ一覧画面を表示
 		return "history.html";
+	}
+	
+	@GetMapping(path="/msgmemo/csv")
+	public String csv(Model model) {
+		
+		// 結合したテーブルの全データを取得
+		ArrayList<Csv> csvList = csvRepository.csv();	// リポジトリで作ったメソッド"csv();"呼び出す
+				
+		// モデルに属性追加
+		model.addAttribute("csvlist",csvList);
+		
+		return "csv.html";
 	}
 
 	

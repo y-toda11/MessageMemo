@@ -6,49 +6,37 @@ th {
 	background-color: silver;
 }
 
-.table {
-	border: none;
+#table1 {
+	margin-bottom: 0px;
 }
 
-tbody {
-	overflow-y: auto;
-	height: 480px;
-}
-
-thead, th {
-	position: sticky;
-	position: -webkit-sticky;
-	top: 0px;
-	border-bottom: none;
-}
-
-table, thead, tbody {
-	display: block;
+tr, td {
+	width: 100vh;
 }
 
 .thid {
 	width: 50px;
 }
 .tdid {
-	width: 50px;
+	width: 49px;
 }
 
 .thtime {
 	width: 150px;
 }
 .tdtime {
-	width: 150px;
+	width: 147px;
 }
 
 .thto {
 	width: 110px;
 }
 .tdto {
-	width: 110px;
+	width: 108px;
 }
 
 .from {
-	width: 321px;
+	width: 295px;
 }
 
 .cName {
@@ -56,11 +44,11 @@ table, thead, tbody {
 }
 
 .sender {
-	width: 101px;
+	width: 100px;
 }
 
 .thmsg {
-	width: 200px;
+	width: 206px;
 }
 
 .tdmsg {
@@ -68,7 +56,7 @@ table, thead, tbody {
 }
 
 .thname {
-	width: 132px;
+	width: 136px;
 }
 
 .tdname {
