@@ -1,9 +1,17 @@
 package com.example.MessageMemo;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+//import java.io.FileWriter;
+//import java.io.BufferedWriter;
+//import java.io.PrintWriter;
+//import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -142,12 +150,44 @@ public class MessageMemoController {
 				
 		// モデルに属性追加
 		model.addAttribute("csvlist",csvList);
-		
+		     
+        try {
+            // 出力ファイルの作成
+            FileWriter f = new FileWriter("c:\\message_history.csv", false);
+            PrintWriter p = new PrintWriter(new BufferedWriter(f));
+ 
+            // ヘッダーを指定する
+            p.print("ID");
+            p.print(",");
+            p.print("受電日時");
+            p.println(",");
+            p.print("宛先者");
+            p.print(",");
+            p.print("会社名");
+            p.println(",");
+            p.print("氏名");
+            p.print(",");
+            p.print("名前");
+            p.println(",");
+            p.print("対応");
+            p.print(",");
+            p.print("メモ");
+            p.println(",");
+            p.print("受電者");
+ 
+            // 内容をセットする
+            p.print(csvList);
+                p.println();    // 改行
+            
+ 
+            // ファイルに書き出し閉じる
+            p.close();
+ 
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        
 		return "csv.html";
 	}
 
-	
-	
 }
-
-

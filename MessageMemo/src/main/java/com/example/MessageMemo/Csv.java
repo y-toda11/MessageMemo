@@ -3,11 +3,10 @@ package com.example.MessageMemo;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.sql.Timestamp;
-//import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 @Entity	// データベースから値を取得
-public class History {
+public class Csv {
 
 	@Id	// 主キー
 	private int m_id;	// M_ID
@@ -21,6 +20,8 @@ public class History {
 	private String sender;	// 氏名
 	
 	private String message_cd;	// メッセージコード
+	
+	private String memo;
 	
 	private String e_name;	// 社員氏名
 	
@@ -62,12 +63,19 @@ public class History {
 			return "もう一度お電話します";
 		} else if(this.message_cd.equals("2")) {
 			return "折り返しお願いします";
-		} else {
+		} else if(this.message_cd.equals("3")) {
 			return "伝言あります";
 		}
+		return message_cd;
 	}
 	public void setMessage_cd(String message_cd) {
 		this.message_cd = message_cd;
+	}
+	public String getMemo() {
+		return memo;
+	}
+	public void setMemo(String memo) {
+		this.memo = memo;
 	}
 	public String getE_name() {
 		return e_name;
@@ -75,7 +83,6 @@ public class History {
 	public void setE_name(String e_name) {
 		this.e_name = e_name;
 	}
-
-
+	
 }
 
